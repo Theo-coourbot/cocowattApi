@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:3000/")
 @RequestMapping("api/user")
 public class UserController {
 
@@ -44,7 +45,6 @@ public class UserController {
         }
         return ResponseEntity.ok(userDtoResponseList);
     }
-
     @GetMapping("/id/{id}")
     public ResponseEntity<?> getById(@PathVariable int id) {
         try {
@@ -54,6 +54,16 @@ public class UserController {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
+    @GetMapping("email")
+    public ResponseEntity<?> getByEmail(@RequestParam  String mail) {
+        try {
+            UserDtoResponse userDtoResponse = modelMapper.map(userService.findByEmail(mail), UserDtoResponse.class);
+            return ResponseEntity.ok(userDtoResponse);
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
+
 
     @GetMapping("/lastname/{lastName}")
     public ResponseEntity<?> getAllByLastName(@PathVariable String lastName) {

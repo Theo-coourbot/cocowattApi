@@ -3,10 +3,12 @@ package com.example;
 import com.example.config.ApiRestConfig;
 import com.example.config.ApiRestInitializer;
 import com.example.config.InfrastructureConfig;
+
 import org.springframework.boot.SpringApplication;
 import org.springframework.context.ConfigurableApplicationContext;
 
 import java.util.Collections;
+
 
 public class Main {
     public static void main(String[] args) {
